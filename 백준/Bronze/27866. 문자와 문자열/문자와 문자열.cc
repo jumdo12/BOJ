@@ -1,14 +1,9 @@
 #include <iostream>
-
-using namespace std;
-
+#include <string>
 int main(){
-    int N;
-    string str;
-    
-    cin >> str >> N;
-    
-    cout << str[N-1];
-    
+    std::string str;
+    int n;
+    std::cin >> str >> n;
+    std::cout << str[n-1];
     return 0;
 }
