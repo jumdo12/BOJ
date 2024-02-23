@@ -1,10 +1,9 @@
-#include<iostream>
-#include<string>
-
-using namespace std;
+#include <iostream>
+#include <string>
 
 int main(){
-    string str; cin >> str;
-    cout << str.length();
+    std::string str;
+    std::cin >> str;
+    std::cout << str.length();
     return 0;
 }
