@@ -1,65 +1,26 @@
-#include <stdio.h>
-#include <string.h>
-
-typedef struct
-{
-    char subject[100];
-    float grade = 0;
-    char credit[2];
-
-    void input(){
-        scanf("%s %f %s",subject,&grade,credit);
-    }
-
-    float score(){
-        float tmp;
-        if(credit[1] == '+'){
-            tmp = 0.5;
-        }
-        else{
-            tmp = 0;
-        }
-
-        if(credit[0] == 'A'){
-            tmp += 4;
-        }
-        else if(credit[0] == 'B'){
-            tmp +=3;
-        }
-        else if(credit[0] == 'C'){
-            tmp +=2;
-        }
-        else if(credit[0] == 'D'){
-            tmp +=1;
-        }
-        else if(credit[0] == 'P'){
-            tmp = -1;
-        }
-        else{
-            tmp = 0;
-        }
-
-        return tmp;
-    }
-
-}Grade;
-
+#include <iostream>
+#include <string>
 
 int main(){
+    std::string name, grade;
+    double credit , total_credits=0, total_scores=0;
 
-    Grade g[100];
-    float sum = 0;
-    int count =0;
+    for(int i=0; i<20; i++){
+        std::cin>>name>>credit>>grade;
 
-    for(int i=0; i<100; i++){
-        g[i].input();
-        if(g[i].score() != -1){
-            count += g[i].grade;
-            sum += g[i].grade * g[i].score();
-        }
+        double temp;
+        if(grade[0] == 'A') temp = 4;
+        else if(grade[0] == 'B') temp= 3;
+        else if(grade[0] =='C') temp=2;
+        else if(grade[0] =='D') temp = 1;
+        else if(grade[0] == 'F') temp = 0;
+        else    continue;
+
+        if(grade.length() != 1 && grade[1] == '+')  temp += 0.5;
+
+        total_credits += credit;
+        total_scores += temp * credit;
     }
-
-    printf("%.6f",sum / count);
-
+    std::cout << total_scores / total_credits;
     return 0;
 }
