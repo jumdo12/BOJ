@@ -1,32 +1,31 @@
 #include <iostream>
-#include <math.h>
-
-using namespace std;
 
 int main(){
-    int N,cnt;
-    int arr[1000001]= {0};
-    arr[1] = 1;
+    std::ios_base::sync_with_stdio(false);
+    std::cin.tie(NULL);
+    std::cout.tie(NULL);
 
-    for(int i = 2; i<=sqrt(1000000); i++){
-        if(!arr[i]){
-            for(int j = i *i; j<= 1000000; j+=i ){
-                arr[j] = 1;
-            }
+    int N;
+    int PrimeNumbers[246913]={0};
+
+    PrimeNumbers[0]=PrimeNumbers[1]=1;
+    for(int i=2; i<=246912; i++){
+        if(PrimeNumbers[i]){
+            continue;
+        }
+        for(int j = 2*i; j<=246912; j+=i){
+            PrimeNumbers[j] = 1;
         }
     }
 
-    cin >> N;
-
-    while(N>0){
-        cnt = 0;
-        for(int i = N+1; i<=2 * N; i++){
-            if(!arr[i]){
-                cnt++;
-            }
+    std::cin>>N;
+    while(N != 0){
+        int cnt=0;
+        for(int i=N+1; i<=2*N; i++){
+            if(!PrimeNumbers[i])    cnt++;
         }
-        cout << cnt << endl;
-        cin >> N;
+        std::cout<<cnt<<'\n';
+        std::cin>>N;
     }
 
     return 0;
