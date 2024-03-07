@@ -2,23 +2,18 @@
 #include <queue>
 
 int main(){
-    int N,temp;
+    int N;
     std::queue<int> q;
     std::cin>>N;
     for(int i=1; i<=N; i++){
         q.push(i);
     }
 
-    temp = q.front();
     while(q.size()!= 1){
         q.pop();
-        temp = q.front();
-        if(q.size() == 1){
-            break;
-        }
-        q.push(temp);
+        q.push(q.front());
         q.pop();
     }
-    printf("%d",temp);
+    printf("%d",q.front());
     return 0;
 }
