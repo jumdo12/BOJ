@@ -3,24 +3,34 @@
 
 int main(){
     std::string str;
-    int dp[26][200002] = {0};
+    std::cout.sync_with_stdio(false);
+    std::cout.tie(NULL);
+    std::cin.tie(NULL);
+
+    int dp[26][200003] = {0};
     int left, right, N;
     char ch;
 
     std::cin>>str;
 
-    for(int i=0; i<str.length(); i++){
+    dp[str[0]-'a'][0] = 1;
+    for(int i=1; i<str.length(); i++){
         ch = str[i];
-        for(int j = i; j < str.length(); j++){
-            dp[ch-'a'][j+1]++;
+        for(int j = 0; j < 26; j++){
+            dp[j][i] = dp[j][i-1];
         }
+        dp[ch-'a'][i]++;
     }
 
     std::cin>>N;
     while(N--){
         std::cin >> ch >> left >> right;
-        right++;
-        std::cout<<dp[ch-'a'][right]-dp[ch-'a'][left]<<'\n';
+        if(left == 0){
+            std::cout << dp[ch - 'a'][right]<<'\n';
+        }
+        else{
+            std::cout << dp[ch - 'a'][right] - dp[ch - 'a'][left-1] << '\n';
+        }
     }
 
     return 0;
