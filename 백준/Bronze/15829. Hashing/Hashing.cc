@@ -1,23 +1,18 @@
 #include <iostream>
 
-int pow(int x, int n){
-    int tmp = 1;
-    for(int i=0; i<n; i++){
-        tmp *= x;
-    }
-    return tmp;
-}
-
 int main(){
-    int sum = 0;
+    long long sum = 0;
     int N;
-    char str[5] = {0};
+    char str[51] = {0};
     std::cin>>N;
 
+    long long temp = 1;
     for(int i=0; i<N; i++){
         std::cin>>str[i];
-        sum += ( str[i] - 'a' + 1 ) * pow(31,i);
+
+        sum += ((str[i] - 'a' + 1) * temp) % 1234567891;
+        temp = (temp * 31) % 1234567891;
     }
-    std::cout<<sum;
+    std::cout << sum % 1234567891;
     return 0;
 }
