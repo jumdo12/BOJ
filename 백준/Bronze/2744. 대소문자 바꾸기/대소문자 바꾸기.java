@@ -2,27 +2,23 @@ import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
 public class Main {
-    public static boolean isUpperCase(String str){
-        String upperCase = str.toUpperCase();
-        return str.equals(upperCase);
-    }
-
     public static void main(String[] args) {
         BufferedReader bf = new BufferedReader(new InputStreamReader(System.in));
-        try {
+        try{
             String line = bf.readLine();
-            String str = "";
+            StringBuilder ans = new StringBuilder();
 
             for(int i=0; i<line.length(); i++){
                 char ch = line.charAt(i);
-                String temp = Character.toString(ch);
-                if(isUpperCase(temp)){
-                    temp = temp.toLowerCase();
-                } else temp = temp.toUpperCase();
-                str += temp;
+                if(Character.isUpperCase(ch)){
+                    ans.append(Character.toLowerCase(ch));
+                } else if(Character.isLowerCase(ch)){
+                    ans.append(Character.toUpperCase(ch));
+                } else {
+                    ans.append(ch);
+                }
             }
-
-            System.out.println(str);
+            System.out.println(ans);
         } catch (Exception e){
             e.printStackTrace();
         }
