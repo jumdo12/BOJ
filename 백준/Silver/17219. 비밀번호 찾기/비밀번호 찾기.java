@@ -25,11 +25,12 @@ public class Main {
                 passwords.put(name,password);
             }
 
+            StringBuilder ans = new StringBuilder();
             for(int i=0; i<caseCount; i++){
                 line = bf.readLine();
-                System.out.println(passwords.get(line));
+                ans.append(passwords.get(line)).append("\n");
             }
-
+            System.out.println(ans);
         } catch (Exception e){
             e.printStackTrace();
         }
