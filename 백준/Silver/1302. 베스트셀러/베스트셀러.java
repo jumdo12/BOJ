@@ -22,17 +22,12 @@ public class Main {
             String minName = null;
 
             for(Map.Entry<String,Integer> entry : map.entrySet()){
-                if(minName == null){
-                    maxVal = entry.getValue();
-                    minName = entry.getKey();
-                }
+                String name = entry.getKey();
+                int val = entry.getValue();
 
-                if(entry.getValue() > maxVal){
-                    maxVal = entry.getValue();
-                    minName = entry.getKey();
-                }
-                else if(entry.getValue() == maxVal && entry.getKey().compareTo(minName) < 0) {
-                    minName = entry.getKey();
+                if(val > maxVal || val == maxVal && name.compareTo(minName) < 0){
+                    minName = name;
+                    maxVal = val;
                 }
             }
             System.out.println(minName);
