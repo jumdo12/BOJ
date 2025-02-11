@@ -6,7 +6,7 @@ class Solution {
         for (char ch : s.toCharArray()) {
             if (ch == ' ') {
                 answer.append(ch);
-                index = 0;  // 공백이 나오면 새로운 단어의 시작으로 초기화
+                index = 0;
             } else {
                 if (index % 2 == 0) {
                     answer.append(Character.toUpperCase(ch));
