@@ -4,7 +4,9 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Main {
 
@@ -12,43 +14,29 @@ public class Main {
 
     public static void solve(BufferedReader bf) throws IOException {
         String line = bf.readLine();
-
         int n = Integer.parseInt(line);
 
         line = bf.readLine();
         String[] split = line.split(" ");
-        List<Integer> list = new ArrayList<>();
+        Set<Integer> set = new HashSet<>();
         for(int i=0; i<n; i++){
-            list.add(Integer.parseInt(split[i]));
+            set.add(Integer.parseInt(split[i]));
         }
 
         line = bf.readLine();
         int target = Integer.parseInt(line);
 
-        list.sort(Integer::compareTo);
-
         int sum = 0;
-        int leftIdx = 0;
-        int rightIdx = list.size() - 1;
+        for(int i=0; i<n; i++){
+            int num = Integer.parseInt(split[i]);
+            int need = target - num;
 
-        while(leftIdx < rightIdx){
-            int left = list.get(leftIdx);
-            int right = list.get(rightIdx);
-
-            if(left + right == target) {
-                sum ++;
-                leftIdx++;
-                rightIdx--;
-            }
-            else if(left + right > target) {
-                rightIdx--;
-            }
-            else {
-                leftIdx++;
+            if(set.contains(need)){
+                sum++;
             }
         }
-
-        sb.append(sum);
+        
+        sb.append(sum / 2);
     }
 
     public static void main(String[] args) {
