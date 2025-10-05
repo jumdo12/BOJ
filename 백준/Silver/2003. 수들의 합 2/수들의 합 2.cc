@@ -24,7 +24,7 @@ int main() {
     for(;right < N; right++){
         sum += v[right];
 
-        while(sum > M && left < right) {
+        while(sum > M) {
             sum -= v[left];
             left++;
         }
