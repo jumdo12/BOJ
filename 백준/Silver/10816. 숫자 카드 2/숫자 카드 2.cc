@@ -1,22 +1,31 @@
 #include <iostream>
 #include <map>
 
-int main(){
-    std::ios_base::sync_with_stdio(false);
-    std::cin.tie(NULL);
-    std::cout.tie(NULL);
+using namespace std;
+
+int main() {
+    ios_base::sync_with_stdio(false);
+    cin.tie(NULL);
+    cout.tie(NULL);
+
+    int N,M;
+    map<int,int> m;
     
-    std::map<int,int> m;
-    int N,temp;
-    std::cin>>N;
-    for(int i=0; i<N; i++){
-        std::cin>>temp;
-        m[temp]++;
+    cin >> N;
+
+    for(int i=0; i<N; i++) {
+        int tmp;
+        cin >> tmp;
+
+        m[tmp]++;
     }
-    std::cin>>N;
-    for(int i=0; i<N; i++){
-        std::cin>>temp;
-        std::cout<<m[temp]<<" ";
+
+    cin >> M;
+
+    for(int i=0; i<M; i++) {
+        int tmp;
+        cin >> tmp;
+
+        cout << m[tmp] << " ";
     }
-    return 0;
 }
