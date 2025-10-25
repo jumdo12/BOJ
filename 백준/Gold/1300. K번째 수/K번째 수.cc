@@ -1,43 +1,44 @@
 #include <iostream>
+#include <cmath>
 
-typedef long long ll;
+using namespace std;
 
-ll count(ll num , ll n){
-    ll sum = 0;
-    ll temp;
-    for(int i = 1; i <= n; i++){
-        temp = num / i;
-        if(temp > n)    temp = n;
-        sum += temp;
-    }
-    return sum;
-}
+long long N;
+int M;
 
-void solve(ll n , ll k ,ll left, ll right){
-    ll mid;
-    
-    while(left <= right){
-        mid = (left + right) / 2;
+long long ans = INT32_MAX;
+int maxCount = 0;
 
-        if(left == right){
-            std::cout<<left;
-            break;
+int main() {
+    cin >> N;
+    cin >> M;
+
+    long long left = 1;
+    long long right = N*N;
+
+    while(left <= right) {
+        long long mid = (left + right) / 2;
+
+        long long sum = 0;
+        for(long long i=1; i<=N; i++) {
+            long long tmp = mid / i;
+
+            if(tmp > N) {
+                sum += N;
+            }
+            else {
+                sum += tmp;
+            }
         }
 
-        if(count(mid,n) >= k){
-            right = mid;
-        }
-        else{
+        if(sum < M) {
             left = mid + 1;
+        } else {
+            ans = min(ans, mid);
+
+            right = mid - 1;
         }
-    }
-}
+    } 
 
-int main(){
-    ll n,k;
-    std::cin>>n>>k;
-
-    solve(n,k,1,n*n);
-
-    return 0;
+    cout << ans;
 }
