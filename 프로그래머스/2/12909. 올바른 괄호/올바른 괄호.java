@@ -2,25 +2,29 @@ import java.util.*;
 
 class Solution {
     boolean solution(String s) {
+        boolean answer = true;
         
-        int count = 0;
+        LinkedList<String> list = new LinkedList<>();
         for(int i=0; i<s.length(); i++) {
-            char currChar = s.charAt(i);
+            char ch = s.charAt(i);
             
-            if(currChar == '(') {
-                count++;
+            if(ch == '(') {
+                list.add("(");
             }
-            else {
-                if(count == 0) {
+            else if(ch == ')') {
+                if(list.isEmpty()) {
                     return false;
                 }
-                else {
-                    count--;
+                
+                if(list.peekLast().equals(")")) {
+                    return false;
                 }
+                
+                list.pollLast();
             }
-        }
+        } 
         
-        if(count != 0) {
+        if(!list.isEmpty()){
             return false;
         }
         
