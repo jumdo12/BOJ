@@ -1,48 +1,40 @@
-import java.util.*;
-
 class Solution {
-    public static int count = 0;
+    private int count = 0;
     
-    public void dfs(int[] numbers, int curr, int sum, int target) {
-        if(curr == numbers.length) {
+    public int solution(int[] numbers, int target) {
+        solve(numbers, 0, target, 0);
+        
+        return count;
+    }
+    
+    public void solve (int[] numbers, int curr, int target, int sum) {
+        if(numbers.length == curr) {
             if(sum == target) {
-                count++;            
+                count++;
             }
             
             return;
         }
         
-        dfs(numbers, curr+1, sum + numbers[curr], target);
-        dfs(numbers, curr+1, sum - numbers[curr], target);
-    }
-    
-    public int solution(int[] numbers, int target) {    
-        dfs(numbers, 0, 0, target);
-        
-        return count;
+        solve(numbers, curr+1, target, sum + numbers[curr]);
+        solve(numbers, curr+1, target, sum - numbers[curr]);
     }
 }
 
 /*
-음이 아닌 정수 n개
-순서를 마꾸지 않고 적절히 더하거나 빼서 타겟 넘버를 만들어야함
 
-1,1,1,1로 3은
-1 -1 1 1 1
+n개의 정수가 있는 데 더하거나 뺴기만 해서 타겟 넘버를 만들어라
 
-1. 그리디
-+ n개
-- N-n개
-를 찾는 ?
+4, 1, 2, 1
+4 + 1
+    4 + 1 + 2
+    4 + 1 - 2
+        ...
+4 - 1
+    4 - 1 + 2
+    4 - 1 - 2
+        ...
 
-방법 수도 써야한다..?
-n개 중에
-+ i개
-- k개
-j = N-k;
-
-+1, +1, +1, +1, +1
-+1, -1, +1, +1, +1
-이거라서 DFS 같은데
-
+뎁스가 꽉 찼을 때 타겟 넘버가 되어야함.
+그냥 브루트포스
 */
